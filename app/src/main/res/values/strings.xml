@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JaporApp</string>
+    <string name="lanjutkan">Lanjutkan</string>
+    <string name="lewati_perkenalan">Lewati Perkenalan</string>
+    <string name="now_playing_desc">Lebih mudah untuk mengetahui <br></br> film yang sedang tampil</string>
+    <string name="deteksi_objek">Deteksi Objek</string>
 </resources>
