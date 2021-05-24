@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">JaporApp</string>
+    <string name="app_name">JaPor</string>
+    <string name="dummy_email">johndoe@gmail.com</string>
+    <string name="dummy_password">******</string>
+    <string name="dummy_fullname">John Doe</string>
+    <string name="dummy_nik">1234567887654321</string>
+    <string name="sign_up">Daftar</string>
+    <string name="password">Sandi</string>
+    <string name="email">Email</string>
+    <string name="nik">NIK</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="password_confirmation">Konfirmasi Sandi</string>
+    <string name="sign_in">Masuk</string>
+    <string name="forgot_password">Lupa sandi?</string>
+    <string name="send_email_verification">Kirim</string>
+    <string name="sign_out">Keluar</string>
+    <string name="empty">Data kosong!</string>
+    <string name="lanjutkan">Lanjutkan</string>
+    <string name="deteksi_objek">Deteksi Objek</string>
+    <string name="now_playing_desc">Lebih mudah untuk mengetahui <br /> film yang sedang tampil</string>
+    <string name="lewati_perkenalan">Lewati Perkenalan</string>
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
 </resources>

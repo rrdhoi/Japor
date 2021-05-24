@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.JaporApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.JaporApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,5 +12,32 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Button">
+    </style>
+
+    <style name="Button.Primary">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#ffff</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/shape_rectangle_button</item>
+    </style>
+
+    <style name="TextView">
+
+    </style>
+
+    <style name="TextView.PoppinsLight16grey500">
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textColor">@color/grey_500</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextView.PoppinsMedium22black700">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/black_700</item>
+        <item name="android:textSize">22sp</item>
     </style>
 </resources>
