@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bangkit.japorapp">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,11 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JaporApp">
-        <activity android:name=".onboarding.OnboardingFourActivity"></activity>
-        <activity android:name=".onboarding.OnboardingTreeActivity" />
-        <activity android:name=".onboarding.OnboardingTwoActivity" />
-        <activity android:name=".onboarding.OnboardingOneActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ReportActivity"></activity>
+        <activity android:name=".ui.onboarding.OnboardingFourActivity" />
+        <activity android:name=".ui.onboarding.OnboardingTreeActivity" />
+        <activity android:name=".ui.onboarding.OnboardingTwoActivity" />
+        <activity android:name=".ui.onboarding.OnboardingOneActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.JaporApp.noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

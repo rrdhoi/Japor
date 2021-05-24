@@ -4,4 +4,8 @@
     <string name="lewati_perkenalan">Lewati Perkenalan</string>
     <string name="now_playing_desc">Lebih mudah untuk mengetahui <br></br> film yang sedang tampil</string>
     <string name="deteksi_objek">Deteksi Objek</string>
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

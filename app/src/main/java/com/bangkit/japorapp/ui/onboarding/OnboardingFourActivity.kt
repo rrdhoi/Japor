@@ -1,4 +1,4 @@
-package com.bangkit.japorapp.onboarding
+package com.bangkit.japorapp.ui.onboarding
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +14,9 @@ class OnboardingFourActivity : AppCompatActivity() {
         next_4.setOnClickListener {
             finishAffinity()
 
-            val intent = Intent(this@OnboardingFourActivity,
-                SignInActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@OnboardingFourActivity,
+//                SignInActivity::class.java)
+//            startActivity(intent)
         }
     }
 }

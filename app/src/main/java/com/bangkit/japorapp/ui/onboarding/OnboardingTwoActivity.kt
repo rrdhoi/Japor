@@ -1,4 +1,4 @@
-package com.bangkit.japorapp.onboarding
+package com.bangkit.japorapp.ui.onboarding
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
