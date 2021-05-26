@@ -21,4 +21,22 @@
     <string name="lewati_perkenalan">Lewati Perkenalan</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
+    <string name="judul">Judul</string>
+    <string name="tulis_judul_laporan">Tulis judul laporan</string>
+    <string name="keterangan">Keterangan</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="tulis_deskripsi_laporan">Tulis deskripsi laporan</string>
+    <string name="category">Kategori</string>
+    <string name="kirim">Kirim</string>
+    <string name="damaged_nroads">Damaged<br />Roads</string>
+    <string name="blocking_ntrees">Blocking<br />Trees</string>
+    <string name="wildfire">Wildfire</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profil_kamu">Profil Kamu</string>
+    <string name="catatan_laporan">Catatan Laporan</string>
+    <string name="edit_profil">Edit Profil</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="keluar">Keluar</string>
+    <string name="bantuan">Bantuan</string>
 </resources>

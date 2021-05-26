@@ -1,8 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.ReportActivity"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.ReportActivity">
+    android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_photo"
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.036">
+
+            <ImageView
+                android:id="@+id/img_report"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_image_not_supported_24"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/grey_500"
+            android:text="@string/judul"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_photo" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_name_edt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/grey_500"
+            android:textColorHint="@color/grey_200"
+            android:background="@drawable/shape_rectangle_grey"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            android:ems="10"
+            android:fontFamily="@font/poppins_light"
+            android:hint="@string/tulis_judul_laporan"
+            android:padding="10dp"
+            android:inputType="textMultiLine"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/grey_500"
+            android:text="@string/deskripsi"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_name_edt" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:background="@drawable/shape_rectangle_grey"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/grey_500"
+            android:textColorHint="@color/grey_200"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/desc"
+            android:hint="@string/tulis_deskripsi_laporan"
+            android:ems="10"
+            android:inputType="textCapSentences|textMultiLine"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintStart_toStartOf="parent"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:lines="5"
+            android:scrollHorizontally="false"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/kategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/category"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/grey_500"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edReview" />
+
+        <FrameLayout
+            android:id="@+id/frame_recom_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/kategori"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/type_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="8dp"
+                tools:backgroundTint="@color/white"
+                android:layout_margin="4dp"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/img_fire"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/img_fire_blue"/>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/star_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_recommended"
+                android:translationZ="90dp"
+                android:visibility="invisible"/>
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/frame_recom_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/kategori"
+            app:layout_constraintLeft_toRightOf="@id/frame_recom_1">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/type_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="4dp"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/img_tree"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/img_tree_blue"/>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/star_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_recommended"
+                android:translationZ="90dp"
+                android:visibility="invisible"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_recom_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/kategori"
+            app:layout_constraintLeft_toRightOf="@id/frame_recom_2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/type_3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="8dp"
+                android:elevation="3dp"
+                android:layout_margin="4dp"
+                >
+
+                <ImageView
+                    android:id="@+id/img_road"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/img_road_blue"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/star_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_recommended"
+                android:translationZ="90dp"
+                android:visibility="invisible"/>
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/kategori_detail_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/wildfire"
+            android:textColor="@color/grey_200"
+            android:textSize="10sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/frame_recom_1"
+            app:layout_constraintStart_toStartOf="@+id/frame_recom_1"
+            app:layout_constraintTop_toBottomOf="@id/frame_recom_1"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/kategori_detail_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/blocking_ntrees"
+            android:textAlignment="center"
+            android:textColor="@color/grey_200"
+            android:textSize="10sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/frame_recom_2"
+            app:layout_constraintStart_toStartOf="@+id/frame_recom_2"
+            app:layout_constraintTop_toBottomOf="@id/frame_recom_2"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/kategori_detail_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/damaged_nroads"
+            android:gravity="center"
+            android:textColor="@color/grey_200"
+            android:textSize="10sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/frame_recom_3"
+            app:layout_constraintStart_toStartOf="@+id/frame_recom_3"
+            app:layout_constraintTop_toBottomOf="@id/frame_recom_3"
+            tools:ignore="SmallSp" />
+
+        <Button
+            android:id="@+id/kirim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            style="@style/Button.Primary"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/kirim"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kategori_detail_3"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
