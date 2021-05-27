@@ -35,9 +35,34 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="TextView.PoppinsRegular16grey500">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/grey_500</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextView.PoppinsLight14grey300">
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textColor">@color/grey_300</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="TextView.PoppinsMedium22black700">
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textColor">@color/black_700</item>
         <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="EditText">
+    </style>
+
+    <style name="EditText.PoppinsRegular14grey300">
+        <item name="android:background">@drawable/shape_rectangle_grey</item>
+        <item name="android:padding">10dp</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:textColorHint">@color/grey_300</item>
+        <item name="android:textColor">@color/grey_500</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">6dp</item>
     </style>
 </resources>

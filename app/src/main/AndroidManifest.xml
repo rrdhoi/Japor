@@ -14,18 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JaporApp"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.ReportActivity" />
-        <activity android:name=".ui.onboarding.OnboardingFourActivity" />
-        <activity android:name=".ui.onboarding.OnboardingThreeActivity" />
-        <activity android:name=".ui.onboarding.OnboardingTwoActivity" />
-        <activity android:name=".ui.onboarding.OnboardingOneActivity" />
-        <activity android:name=".ui.HomeActivity">
+        <activity android:name=".ui.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ReportActivity" />
+        <activity android:name=".ui.onboarding.OnboardingFourActivity" />
+        <activity android:name=".ui.onboarding.OnboardingThreeActivity" />
+        <activity android:name=".ui.onboarding.OnboardingTwoActivity" />
+        <activity android:name=".ui.onboarding.OnboardingOneActivity" />
+        <activity android:name=".ui.HomeActivity"/>
         <activity android:name=".ui.MainActivity" />
     </application>
 

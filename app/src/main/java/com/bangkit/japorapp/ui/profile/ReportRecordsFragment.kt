@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.japorapp.data.response.ReportResponse
-import com.bangkit.japorapp.databinding.FragmentReportRecordsBinding
+import com.bangkit.japorapp.databinding.FragmentReportRecordBinding
 import com.bangkit.japorapp.utils.UserPreference
 
 class ReportRecordsFragment : Fragment() {
 
-    private var _binding: FragmentReportRecordsBinding? = null
-    private val binding get() = _binding as FragmentReportRecordsBinding
+    private var _binding: FragmentReportRecordBinding? = null
+    private val binding get() = _binding as FragmentReportRecordBinding
     private lateinit var adapter: ProfileAdapter
     private val profileViewModel: ProfileViewModel by viewModels()
     private lateinit var userPreference: UserPreference
@@ -24,7 +24,7 @@ class ReportRecordsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentReportRecordsBinding.inflate(inflater, container, false)
+        _binding = FragmentReportRecordBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,6 +37,10 @@ class ReportRecordsFragment : Fragment() {
         val nik = userPreference.getUser().nik
 
         profileViewModel.getReport(nik)
+
+        binding.ivArrowBack.setOnClickListener {
+            onDestroy()
+        }
     }
 
     private fun showRecyclerView() {
@@ -58,7 +62,7 @@ class ReportRecordsFragment : Fragment() {
         }
 
         profileViewModel.message.observe(viewLifecycleOwner) { message ->
-            binding.tvMessage.text = message
+            //binding.tvMessage.text = message
         }
     }
 }

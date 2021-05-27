@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bangkit.japorapp.databinding.FragmentSignupBinding
 import com.bangkit.japorapp.ui.HomeActivity
+import java.lang.StringBuilder
 
 class SignUpFragment : Fragment() {
 
@@ -55,15 +56,19 @@ class SignUpFragment : Fragment() {
 
     private fun clickingSignUp() {
         binding.btnSignup.setOnClickListener {
-            val fullName = binding.etFullname.text.toString()
+            val firstName = binding.etFirstname.text.toString()
+            val lastName = binding.etLastname.text.toString()
             val nik = binding.etNik.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
             val confirmedPassword = binding.etConfirmPassword.text.toString()
 
             when {
-                fullName == "" -> {
-                    binding.etFullname.error = "Tidak boleh kosong!"
+                firstName == "" -> {
+                    binding.etFirstname.error = "Tidak boleh kosong!"
+                }
+                lastName == "" -> {
+                    binding.etLastname.error = "Tidak boleh kosong!"
                 }
                 nik == "" -> {
                     binding.etNik.error = "Tidak boleh kosong!"
@@ -88,6 +93,9 @@ class SignUpFragment : Fragment() {
                 }
                 else -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    val combineString = StringBuilder()
+                    combineString.append(firstName).append(" ").append(lastName)
+                    val fullName = combineString.toString()
 
                     signUpViewModel.signUp(email, confirmedPassword, fullName, nik)
                 }

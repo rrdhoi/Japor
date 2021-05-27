@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bangkit.japorapp.databinding.ActivityOnboardingOneBinding
+import com.bangkit.japorapp.ui.MainActivity
+import com.bangkit.japorapp.ui.sign_in.SignInFragment
 import com.bangkit.japorapp.utils.Preferences
 
 class OnboardingOneActivity : AppCompatActivity() {
@@ -21,9 +23,9 @@ class OnboardingOneActivity : AppCompatActivity() {
         if (preferences.getValues("onboarding").equals("1")) {
             finishAffinity()
 
-//            val intent = Intent(this@OnboardingOneActivity,
-//                SignInActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this@OnboardingOneActivity,
+                MainActivity::class.java)
+            startActivity(intent)
         }
 
         binding.next1.setOnClickListener {
@@ -36,9 +38,9 @@ class OnboardingOneActivity : AppCompatActivity() {
             preferences.setValues("onboarding", "1")
             finishAffinity()
 
-//            val intent = Intent(this@OnboardingOneActivity,
-//                SignInActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this@OnboardingOneActivity,
+                MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }

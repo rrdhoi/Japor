@@ -39,4 +39,15 @@
     <string name="pengaturan">Pengaturan</string>
     <string name="keluar">Keluar</string>
     <string name="bantuan">Bantuan</string>
+    <string name="type_email_address">Tulis alamat email kamu</string>
+    <string name="email_address">Alamat Email</string>
+    <string name="type_your_email_address">Tulis alamat email kamu</string>
+    <string name="tulis_password_kamu">Tulis password kamu</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="nama_depan">Nama Depan</string>
+    <string name="nama_belakang">Nama Belakang</string>
+    <string name="tulis_nik_kamu">Tulis NIK kamu</string>
+    <string name="ulang_sandi">Ulang Sandi</string>
+    <string name="tulis_ulang_password_kamu">Tulis ulang password kamu</string>
+    <string name="silahkan_cek_email_kamu">Silahkan cek email kamu!!</string>
 </resources>

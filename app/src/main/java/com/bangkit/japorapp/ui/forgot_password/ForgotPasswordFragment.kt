@@ -37,26 +37,19 @@ class ForgotPasswordFragment : Fragment() {
 
                 Toast.makeText(activity, "Cek email Anda!", Toast.LENGTH_SHORT).show()
 
-                val signInFragment = SignInFragment()
-                val fragmentManager = parentFragmentManager
-                fragmentManager.beginTransaction().apply {
-                    replace(
-                            R.id.frame_container,
-                            signInFragment,
-                            SignInFragment::class.java.simpleName
-                    )
-                    addToBackStack(null)
-                    commit()
-                }
+                binding.tvCheckEmail.visibility = View.VISIBLE
             }
         }
+
 
         forgotPasswordViewModel.message.observe(viewLifecycleOwner) { msg ->
             binding.progressBar.visibility = View.GONE
 
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
         }
+
     }
+
 
     private fun clickingForgotPassword() {
         binding.btnSendVerificationEmail.setOnClickListener {

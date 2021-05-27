@@ -14,8 +14,16 @@ import com.bangkit.japorapp.databinding.FragmentSigninBinding
 import com.bangkit.japorapp.ui.forgot_password.ForgotPasswordFragment
 import com.bangkit.japorapp.ui.sign_up.SignUpFragment
 import com.bangkit.japorapp.ui.HomeActivity
+import com.bangkit.japorapp.ui.MainActivity
 
 class SignInFragment : Fragment() {
+
+    companion object {
+        const val AUTH_SIGN_UP = 1
+        const val AUTH_FORGOT_PASSWORD = 2
+        const val PAGE_REQUEST_SIGN_UP = "page_request_sign_up"
+        const val PAGE_REQUEST_FORGOT_PASSWORD = "page_request_forgot_password"
+    }
 
     private var _binding: FragmentSigninBinding? = null
     private val binding get() = _binding as FragmentSigninBinding
@@ -31,9 +39,7 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observingValue()
-        whenClickingForgotPassword()
-        whenClickingSignIn()
-        whenClickingSignUp()
+        whenClickingButton()
     }
 
     private fun observingValue() {
@@ -64,7 +70,7 @@ class SignInFragment : Fragment() {
         }
     }
 
-    private fun whenClickingForgotPassword() {
+   /* private fun whenClickingForgotPassword() {
         binding.tvForgotPassword.setOnClickListener {
             val forgotPasswordFragment = ForgotPasswordFragment()
             val fragmentManager = parentFragmentManager
@@ -78,9 +84,9 @@ class SignInFragment : Fragment() {
                 commit()
             }
         }
-    }
+    }*/
 
-    private fun whenClickingSignIn() {
+    private fun whenClickingButton() {
         binding.btnSignin.setOnClickListener {
             Log.d("SignInFragment", "whenClickingSignIn")
 
@@ -100,9 +106,21 @@ class SignInFragment : Fragment() {
                 }
             }
         }
+
+        binding.btnGotoSignup.setOnClickListener {
+            val signup = Intent(activity, MainActivity::class.java)
+            signup.putExtra(PAGE_REQUEST_SIGN_UP, AUTH_SIGN_UP)
+            startActivity(signup)
+        }
+
+        binding.tvForgotPassword.setOnClickListener {
+            val forgotPassword = Intent(activity, MainActivity::class.java)
+            forgotPassword.putExtra(PAGE_REQUEST_FORGOT_PASSWORD, AUTH_FORGOT_PASSWORD)
+            startActivity(forgotPassword)
+        }
     }
 
-    private fun whenClickingSignUp() {
+    /*private fun whenClickingSignUp() {
         binding.btnGotoSignup.setOnClickListener {
             val signUpFragment = SignUpFragment()
             val fragmentManager = parentFragmentManager
@@ -116,7 +134,7 @@ class SignInFragment : Fragment() {
                 commit()
             }
         }
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
-        android:textAlignment="center"
+       android:textAlignment="center"
         android:fontFamily="@font/poppins_light"
         android:text="@string/lewati_perkenalan"
         android:textColor="@color/grey_200"
