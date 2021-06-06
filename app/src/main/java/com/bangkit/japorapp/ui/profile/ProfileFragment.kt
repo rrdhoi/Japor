@@ -1,6 +1,7 @@
 package com.bangkit.japorapp.ui.profile
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bangkit.japorapp.R
 import com.bangkit.japorapp.databinding.FragmentProfileBinding
+import com.bangkit.japorapp.ui.BaseView
 import com.bangkit.japorapp.ui.MainActivity
 import com.bangkit.japorapp.ui.profile.delete_account.DeleteAccountFragment
 import com.bangkit.japorapp.ui.profile.my_reports.MyReportsFragment
@@ -21,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), BaseView {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding as FragmentProfileBinding
@@ -29,6 +31,7 @@ class ProfileFragment : Fragment() {
     private lateinit var userPreference: UserPreference
     private var selectedPhotoUri: Uri? = null
     private val profileViewModel: ProfileViewModel by viewModels()
+    private var progressDialog: Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -39,6 +42,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
         userPreference = UserPreference(requireContext())
         if (userPreference.getUser().departemen != "User") {
             binding.tvMyListReport.visibility = View.INVISIBLE
@@ -79,7 +83,7 @@ class ProfileFragment : Fragment() {
 
         profileViewModel.isSuccessUpdate.observe(viewLifecycleOwner) { isSuccessUpdate ->
             if (isSuccessUpdate) {
-                binding.pbFragmentProfile.visibility = View.GONE
+                dismissLoading()
                 Toast.makeText(
                     activity,
                     "Foto profil berhasil diperbaharui!",
@@ -89,7 +93,7 @@ class ProfileFragment : Fragment() {
         }
 
         profileViewModel.message.observe(viewLifecycleOwner) { msg ->
-            binding.pbFragmentProfile.visibility = View.GONE
+            dismissLoading()
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
         }
     }
@@ -131,7 +135,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun signOut() {
-        binding.pbFragmentProfile.visibility = View.VISIBLE
+        showLoading()
 
         val auth = FirebaseAuth.getInstance()
         auth.signOut()
@@ -139,7 +143,7 @@ class ProfileFragment : Fragment() {
         val userPrefs = UserPreference(requireContext())
         userPrefs.clearPrefs()
 
-        binding.pbFragmentProfile.visibility = View.GONE
+        dismissLoading()
 
         val intent = Intent(activity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -159,7 +163,7 @@ class ProfileFragment : Fragment() {
                 .load(selectedPhotoUri)
                 .into(binding.btnCivProfile)
             }
-            binding.pbFragmentProfile.visibility = View.VISIBLE
+            showLoading()
 
             uploadImage()
         }
@@ -186,4 +190,22 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 
+    private fun initView() {
+        progressDialog = Dialog(requireContext())
+        val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)
+
+        progressDialog?.let {
+            it.setContentView(dialogLayout)
+            it.setCancelable(false)
+            it.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+    }
+
+    override fun showLoading() {
+        progressDialog?.show()
+    }
+
+    override fun dismissLoading() {
+        progressDialog?.dismiss()
+    }
 }

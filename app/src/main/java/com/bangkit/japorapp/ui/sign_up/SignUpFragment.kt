@@ -1,5 +1,6 @@
 package com.bangkit.japorapp.ui.sign_up
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,19 +9,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.bangkit.japorapp.R
 import com.bangkit.japorapp.databinding.FragmentSignupBinding
+import com.bangkit.japorapp.ui.BaseView
 import com.bangkit.japorapp.ui.HomeActivity
 import com.bangkit.japorapp.utils.UserPreference
 import java.lang.StringBuilder
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(), BaseView {
 
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding as FragmentSignupBinding
     private val signUpViewModel: SignUpViewModel by viewModels()
+    private var progressDialog: Dialog? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -28,6 +34,7 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
         observingValue()
         clickingSignUp()
     }
@@ -35,21 +42,23 @@ class SignUpFragment : Fragment() {
     private fun observingValue() {
         signUpViewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                binding.progressBar.visibility = View.GONE
+                dismissLoading()
 
-                Toast.makeText(activity,
-                        "Berhasil terdaftar!",
-                        Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    activity,
+                    "Berhasil terdaftar!",
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 val intent = Intent(activity, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        .or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
         }
 
         signUpViewModel.message.observe(viewLifecycleOwner) { msg ->
-            binding.progressBar.visibility = View.GONE
+            dismissLoading()
 
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
         }
@@ -98,7 +107,7 @@ class SignUpFragment : Fragment() {
                     binding.etConfirmPassword.error = "Sandi tidak sama!"
                 }
                 else -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    showLoading()
                     val combineString = StringBuilder()
                     combineString.append(firstName).append(" ").append(lastName)
                     val fullName = combineString.toString()
@@ -112,6 +121,25 @@ class SignUpFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initView() {
+        progressDialog = Dialog(requireContext())
+        val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)
+
+        progressDialog?.let {
+            it.setContentView(dialogLayout)
+            it.setCancelable(false)
+            it.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+    }
+
+    override fun showLoading() {
+        progressDialog?.show()
+    }
+
+    override fun dismissLoading() {
+        progressDialog?.dismiss()
     }
 
 }

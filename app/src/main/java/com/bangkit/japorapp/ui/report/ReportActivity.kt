@@ -1,6 +1,7 @@
 package com.bangkit.japorapp.ui.report
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.bangkit.japorapp.R
 import com.bangkit.japorapp.databinding.ActivityReportBinding
+import com.bangkit.japorapp.ui.BaseView
 import com.bangkit.japorapp.ui.HomeActivity
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -19,7 +21,7 @@ import kotlinx.coroutines.*
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class ReportActivity : AppCompatActivity(), CoroutineScope {
+class ReportActivity : AppCompatActivity(), BaseView, CoroutineScope {
 
     companion object {
         const val CAMERA_IMAGE_REQ_CODE = 103
@@ -34,14 +36,17 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
     private var category = ""
     private var url = ""
     private var reportId: Long = 0
+    private var progressDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initView()
         observingValue()
 
+        showLoading()
         val data = intent.getParcelableExtra<Uri>("URI")
         uploadImageToFirebaseStorage(data)
 
@@ -54,6 +59,7 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
         whenClickingCancelButton()
         whenClickingARecommendation()
         whenClickingSendButton()
+        dismissLoading()
     }
 
     private fun observingValue() {
@@ -69,7 +75,7 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
 
         reportViewModel.isSuccess.observe(this) { isSuccess ->
             if (isSuccess) {
-                binding.pbSendReport.visibility = View.GONE
+                dismissLoading()
 
                 Toast.makeText(this,
                     "Laporan terkirim!",
@@ -83,7 +89,7 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
         }
 
         reportViewModel.message.observe(this) { msg ->
-            binding.pbSendReport.visibility = View.GONE
+            dismissLoading()
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
     }
@@ -108,12 +114,13 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun whenClickingRetakeButton() {
-        binding.btnRecapture.setOnClickListener {
+        binding.cardPhoto.setOnClickListener {
             openCamera()
         }
     }
 
     private fun openCamera() = launch {
+        showLoading()
         withContext(Dispatchers.IO) {
             ImagePicker.with(this@ReportActivity)
                 .cameraOnly()
@@ -121,6 +128,7 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
                 .maxResultSize(620, 620)
                 .start(CAMERA_IMAGE_REQ_CODE)
         }
+        dismissLoading()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -204,7 +212,7 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
                     Toast.makeText(this, "Pilih kategori terlebih dahulu!", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    binding.pbSendReport.visibility = View.VISIBLE
+                    showLoading()
                     reportViewModel.updateReport(reportId, title, desc, category, loc)
                 }
             }
@@ -213,6 +221,25 @@ class ReportActivity : AppCompatActivity(), CoroutineScope {
 
     override fun onBackPressed() {
         Toast.makeText(this, "Klik tombol 'Batalkan Laporan' untuk keluar!", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun initView() {
+        progressDialog = Dialog(this)
+        val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)
+
+        progressDialog?.let {
+            it.setContentView(dialogLayout)
+            it.setCancelable(false)
+            it.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+    }
+
+    override fun showLoading() {
+        progressDialog?.show()
+    }
+
+    override fun dismissLoading() {
+        progressDialog?.dismiss()
     }
 
 }

@@ -1,6 +1,7 @@
 package com.bangkit.japorapp.ui
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class HomeActivity : AppCompatActivity(), CoroutineScope {
+class HomeActivity : AppCompatActivity(),BaseView, CoroutineScope {
 
     private val job = Job()
     override val coroutineContext: CoroutineContext
@@ -24,12 +25,14 @@ class HomeActivity : AppCompatActivity(), CoroutineScope {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var userPref: UserPreference
+    private var progressDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initView()
         isLogin()
         isUser()
 
@@ -37,6 +40,7 @@ class HomeActivity : AppCompatActivity(), CoroutineScope {
         binding.bottomNavigationView.menu.getItem(1).isEnabled = false
 
         binding.floatingButtonCamera.setOnClickListener {
+            showLoading()
             openCamera()
         }
 
@@ -81,9 +85,29 @@ class HomeActivity : AppCompatActivity(), CoroutineScope {
             when (requestCode) {
                 ReportActivity.CAMERA_IMAGE_REQ_CODE -> {
                     startActivity(Intent(this@HomeActivity, ReportActivity::class.java).putExtra("URI", uri))
+                    dismissLoading()
                 }
             }
         }
+    }
+
+    private fun initView() {
+        progressDialog = Dialog(this)
+        val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)
+
+        progressDialog?.let {
+            it.setContentView(dialogLayout)
+            it.setCancelable(false)
+            it.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+    }
+
+    override fun showLoading() {
+        progressDialog?.show()
+    }
+
+    override fun dismissLoading() {
+        progressDialog?.dismiss()
     }
 
 }

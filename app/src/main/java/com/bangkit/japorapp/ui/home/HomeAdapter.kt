@@ -1,10 +1,13 @@
 package com.bangkit.japorapp.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.japorapp.R
 import com.bangkit.japorapp.data.response.ReportResponse
 import com.bangkit.japorapp.databinding.ListAllReportBinding
 import com.bangkit.japorapp.ui.detail.DetailActivity
@@ -21,10 +24,11 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
 
             notifyDataSetChanged()
         }
-
+    
     private lateinit var binding: ListAllReportBinding
 
     inner class ListViewHolder(val binding: ListAllReportBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("ResourceAsColor")
         fun bind(report: ReportResponse) {
             binding.tvTitle.text = report.judul
             binding.tvStatus.text = report.status
@@ -36,13 +40,22 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
 
             when (binding.tvStatus.text) {
                 "Valid" -> {
-                    binding.tvStatus.setTextColor(Color.GREEN)
+                    val drawableGreen = ContextCompat.getDrawable(itemView.context, R.drawable.shape_rectangle_green)
+                    val colorGreen = ContextCompat.getColor(itemView.context, R.color.green_500)
+                    binding.tvStatus.setTextColor(colorGreen)
+                    binding.tvStatus.background = drawableGreen
                 }
                 "Menunggu" -> {
-                    binding.tvStatus.setTextColor(Color.rgb(230, 230, 0))
+                    val drawableYellow = ContextCompat.getDrawable(itemView.context, R.drawable.shape_rectangle_yellow)
+                    val colorYellow = ContextCompat.getColor(itemView.context, R.color.green_500)
+                    binding.tvStatus.setTextColor(colorYellow)
+                    binding.tvStatus.background = drawableYellow
                 }
                 else -> {
-                    binding.tvStatus.setTextColor(Color.RED)
+                    val drawableRed = ContextCompat.getDrawable(itemView.context, R.drawable.shape_rectangle_red)
+                    val colorRed = ContextCompat.getColor(itemView.context, R.color.red_500)
+                    binding.tvStatus.setTextColor(colorRed)
+                    binding.tvStatus.background = drawableRed
                 }
             }
 

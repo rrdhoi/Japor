@@ -1,5 +1,6 @@
 package com.bangkit.japorapp.ui.sign_in
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.bangkit.japorapp.R
 import com.bangkit.japorapp.databinding.FragmentSigninBinding
+import com.bangkit.japorapp.ui.BaseView
 import com.bangkit.japorapp.ui.DepartmentActivity
 import com.bangkit.japorapp.ui.HomeActivity
 import com.bangkit.japorapp.ui.MainActivity
 import com.bangkit.japorapp.utils.UserPreference
 
-class SignInFragment : Fragment() {
+class SignInFragment : Fragment(), BaseView {
 
     companion object {
         const val AUTH_SIGN_UP = 1
@@ -28,6 +31,7 @@ class SignInFragment : Fragment() {
     private val binding get() = _binding as FragmentSigninBinding
     private val signInViewModel: SignInViewModel by viewModels()
     private var department = ""
+    private var progressDialog: Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -38,6 +42,7 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
         observingValue()
         whenClickingButton()
     }
@@ -77,7 +82,7 @@ class SignInFragment : Fragment() {
         signInViewModel.message.observe(viewLifecycleOwner) { msg ->
             Log.d("SignInFragment", "observingValue: message is $msg")
 
-            binding.progressBar.visibility = View.GONE
+            dismissLoading()
 
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
             Log.d("SignInFragment", "whenClickingSignIn: Login failed! $msg")
@@ -99,7 +104,7 @@ class SignInFragment : Fragment() {
                     binding.etPassword.error = "Tidak boleh kosong!"
                 }
                 else -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    showLoading()
                     signInViewModel.signIn(email, password)
                 }
             }
@@ -121,6 +126,25 @@ class SignInFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initView() {
+        progressDialog = Dialog(requireContext())
+        val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)
+
+        progressDialog?.let {
+            it.setContentView(dialogLayout)
+            it.setCancelable(false)
+            it.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+    }
+
+    override fun showLoading() {
+        progressDialog?.show()
+    }
+
+    override fun dismissLoading() {
+        progressDialog?.dismiss()
     }
 
 }
