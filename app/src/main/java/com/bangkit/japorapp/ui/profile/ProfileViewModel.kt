@@ -4,41 +4,38 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bangkit.japorapp.data.network.ApiConfig
-import com.bangkit.japorapp.data.response.ListReportResponse
-import com.bangkit.japorapp.data.response.ReportResponse
+import com.bangkit.japorapp.data.response.UserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ProfileViewModel : ViewModel() {
 
-    private val _report = MutableLiveData<List<ReportResponse>>()
-    val report: LiveData<List<ReportResponse>> get() = _report
+    private var _isSuccessUpdate = MutableLiveData<Boolean>()
+    val isSuccessUpdate: LiveData<Boolean> get() = _isSuccessUpdate
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> get() = _isLoading
+    private var _updatedUser = MutableLiveData<UserResponse>()
+    val updatedUser: LiveData<UserResponse> get() = _updatedUser
 
-    private val _message = MutableLiveData<String>()
+    private var _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
 
-    fun getReport(nik: String) {
-        _isLoading.value = true
+    fun updateUser(id: String, url: String) {
+        val client = ApiConfig.getApiService().updateUserImgUrl(id, url)
 
-        val client = ApiConfig.getApiService().getMyReports(nik)
-        client.enqueue(object : Callback<ListReportResponse> {
-            override fun onResponse(
-                call: Call<ListReportResponse>,
-                response: Response<ListReportResponse>
-            ) {
-                _isLoading.value = false
-
+        client.enqueue(object: Callback<UserResponse> {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
-                    _report.value = response.body()?.results
+                    _updatedUser.value = response.body()
+                    _isSuccessUpdate.value = true
+                } else {
+                    _isSuccessUpdate.value = false
+                    _message.value = "Gagal merespon!"
                 }
             }
 
-            override fun onFailure(call: Call<ListReportResponse>, t: Throwable) {
-                _isLoading.value = false
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                _isSuccessUpdate.value = false
                 _message.value = t.localizedMessage
             }
         })

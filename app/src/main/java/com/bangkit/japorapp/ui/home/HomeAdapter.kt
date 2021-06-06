@@ -1,11 +1,13 @@
 package com.bangkit.japorapp.ui.home
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.japorapp.data.response.ReportResponse
 import com.bangkit.japorapp.databinding.ListAllReportBinding
+import com.bangkit.japorapp.ui.detail.DetailActivity
 import com.bumptech.glide.Glide
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
@@ -22,16 +24,21 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
 
     private lateinit var binding: ListAllReportBinding
 
-    inner class ListViewHolder(binding: ListAllReportBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ListViewHolder(val binding: ListAllReportBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(report: ReportResponse) {
-            binding.tvTitle.text = report.title
+            binding.tvTitle.text = report.judul
             binding.tvStatus.text = report.status
 
+            val dateAndTime = report.tanggal
+                .replace("T", " ")
+                .replace("Z", "")
+            binding.tvDateTime.text = dateAndTime
+
             when (binding.tvStatus.text) {
-                "Done" -> {
+                "Valid" -> {
                     binding.tvStatus.setTextColor(Color.GREEN)
                 }
-                "Pending" -> {
+                "Menunggu" -> {
                     binding.tvStatus.setTextColor(Color.rgb(230, 230, 0))
                 }
                 else -> {
@@ -40,8 +47,14 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
             }
 
             Glide.with(itemView.context)
-                    .load(report.photo)
+                    .load(report.url)
                     .into(binding.ivEvent)
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.KEY_REPORT, report)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 

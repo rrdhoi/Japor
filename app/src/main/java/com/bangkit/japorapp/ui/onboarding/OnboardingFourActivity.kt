@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bangkit.japorapp.databinding.ActivityOnboardingFourBinding
 import com.bangkit.japorapp.ui.MainActivity
-import com.bangkit.japorapp.ui.sign_in.SignInFragment
 
 class OnboardingFourActivity : AppCompatActivity() {
 

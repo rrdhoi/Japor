@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bangkit.japorapp.data.network.ApiConfig
-import com.bangkit.japorapp.data.response.ListReportResponse
 import com.bangkit.japorapp.data.response.ReportResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,27 +20,58 @@ class HomeViewModel : ViewModel() {
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
 
-    init {
-        getReport()
-    }
-
-    private fun getReport() {
+    fun getReport(department: String) {
         _isLoading.value = true
-
+        val reportArray = ArrayList<ReportResponse>()
         val client = ApiConfig.getApiService().getAllReports()
-        client.enqueue(object : Callback<ListReportResponse> {
+
+        client.enqueue(object : Callback<List<ReportResponse>> {
             override fun onResponse(
-                call: Call<ListReportResponse>,
-                response: Response<ListReportResponse>
+                call: Call<List<ReportResponse>>,
+                response: Response<List<ReportResponse>>
             ) {
                 _isLoading.value = false
 
                 if (response.isSuccessful) {
-                    _report.value = response.body()?.results
+
+                    val reportType = response.body()
+                    if (reportType != null) {
+                        val size = reportType.size - 1
+
+                        when (department) {
+                            "User" -> {
+                                _report.value = response.body()
+                            }
+                            "Road" -> {
+                                for (i in 0..size) {
+                                    if (reportType[i].kategori == "Jalan" && reportType[i].status == "Menunggu") {
+                                        reportArray.add(reportType[i])
+                                    }
+                                }
+                                _report.value = reportArray
+                            }
+                            "Fire" -> {
+                                for (i in 0..size) {
+                                    if (reportType[i].kategori == "Api" && reportType[i].status == "Menunggu") {
+                                        reportArray.add(reportType[i])
+                                    }
+                                }
+                                _report.value = reportArray
+                            }
+                            "Tree" -> {
+                                for (i in 0..size) {
+                                    if (reportType[i].kategori == "Pohon" && reportType[i].status == "Menunggu") {
+                                        reportArray.add(reportType[i])
+                                    }
+                                }
+                                _report.value = reportArray
+                            }
+                        }
+                    }
                 }
             }
 
-            override fun onFailure(call: Call<ListReportResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<ReportResponse>>, t: Throwable) {
                 _isLoading.value = false
                 _message.value = t.localizedMessage
             }

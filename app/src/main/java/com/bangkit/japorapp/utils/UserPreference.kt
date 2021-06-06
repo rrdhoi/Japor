@@ -2,40 +2,46 @@ package com.bangkit.japorapp.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.bangkit.japorapp.model.User
+import com.bangkit.japorapp.data.response.UserResponse
 
 class UserPreference(context: Context) {
 
     companion object {
         private const val PREFS_NAME = "user_pref"
-        private const val NAME = "uid"
-        private const val NIK = "username"
-        private const val IMG_URL = "img_url"
-        private const val EMAIL = "email"
+        private const val ID = "id"
+        private const val NAMA = "nama"
+        private const val NIK = "nik"
+        private const val PASSWORD = "password"
+        private const val URL = "url"
+        private const val DEPARTEMEN = "departemen"
     }
 
     private val preferences: SharedPreferences by lazy {
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     }
 
-    fun setUser(value: User) {
+    fun setUser(value: UserResponse) {
         val editor = preferences.edit()
 
-        editor.putString(NAME, value.fullName)
+        editor.putString(ID, value.id)
+        editor.putString(NAMA, value.nama)
         editor.putString(NIK, value.nik)
-        editor.putString(IMG_URL, value.imgUrl)
-        editor.putString(EMAIL, value.email)
+        editor.putString(PASSWORD, value.password)
+        editor.putString(URL, value.url)
+        editor.putString(DEPARTEMEN, value.departemen)
 
         editor.apply()
     }
 
-    fun getUser() : User {
-        val user = User()
+    fun getUser() : UserResponse {
+        val user = UserResponse()
 
-        user.fullName = preferences.getString(NAME, "") ?: ""
+        user.id = preferences.getString(ID, "") ?: ""
+        user.nama = preferences.getString(NAMA, "") ?: ""
         user.nik = preferences.getString(NIK, "") ?: ""
-        user.imgUrl = preferences.getString(IMG_URL, "") ?: ""
-        user.email = preferences.getString(EMAIL, "") ?: ""
+        user.password = preferences.getString(PASSWORD, "") ?: ""
+        user.url = preferences.getString(URL, "") ?: ""
+        user.departemen = preferences.getString(DEPARTEMEN, "") ?: ""
 
         return user
     }

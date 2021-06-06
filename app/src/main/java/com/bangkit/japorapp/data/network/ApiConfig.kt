@@ -15,7 +15,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://script.google.com/macros/s/AKfycbzg9puDVvMfzc1WBDY-8vJ72gtNCO36GPm6E-Zv3wW7KFrmbxic/")
+                .baseUrl("http://192.168.43.249:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

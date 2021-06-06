@@ -1,35 +1,35 @@
 package com.bangkit.japorapp.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ReportResponse(
-    @field:SerializedName("name")
-    val name: String = "",
+    @field:SerializedName("id")
+    val id: Long = 0,
 
-    @field:SerializedName("nik")
-    val nik: String = "",
+    @field:SerializedName("tanggal")
+    val tanggal: String = "",
 
-    @field:SerializedName("place")
-    val place: String = "",
+    @field:SerializedName("judul")
+    val judul: String = "",
 
-    @field:SerializedName("date")
-    val date: String = "",
+    @field:SerializedName("deskripsi")
+    val deskripsi: String = "",
 
-    @field:SerializedName("time")
-    val time: String = "",
-
-    @field:SerializedName("title")
-    val title: String = "",
-
-    @field:SerializedName("photo")
-    val photo: String = "",
-
-    @field:SerializedName("desc")
-    val desc: String = "",
-
-    @field:SerializedName("type")
-    val type: String = "",
+    @field:SerializedName("lokasi")
+    val lokasi: String = "",
 
     @field:SerializedName("status")
-    val status: String = ""
-)
+    val status: String = "",
+
+    @field:SerializedName("url")
+    val url: String = "",
+
+    @field:SerializedName("kategori")
+    val kategori: String = "",
+
+    @field:SerializedName("user_id")
+    val user_id: String = ""
+) : Parcelable

@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.bangkit.japorapp.R
 import com.bangkit.japorapp.databinding.FragmentForgotPasswordBinding
-import com.bangkit.japorapp.ui.sign_in.SignInFragment
 
 class ForgotPasswordFragment : Fragment() {
 

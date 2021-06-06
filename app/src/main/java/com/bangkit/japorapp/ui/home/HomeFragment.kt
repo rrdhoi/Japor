@@ -7,20 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.japorapp.R
 import com.bangkit.japorapp.data.response.ReportResponse
 import com.bangkit.japorapp.databinding.FragmentHomeBinding
-import com.bangkit.japorapp.ui.profile.ProfileFragment
+import com.bangkit.japorapp.utils.UserPreference
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
+
     private lateinit var adapter: HomeAdapter
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var userPrefs: UserPreference
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -28,7 +31,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userPrefs = UserPreference(requireContext())
+        val department = userPrefs.getUser().departemen
+        binding.tvDepartmen.text = department
+
+        adapter = HomeAdapter()
         observingValue()
+        homeViewModel.getReport(department)
         showRecyclerView()
     }
 
@@ -36,6 +45,7 @@ class HomeFragment : Fragment() {
         homeViewModel.report.observe(viewLifecycleOwner) { result ->
             adapter.reportList = result as ArrayList<ReportResponse>
         }
+
         homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
                 binding.pbHome.visibility = View.VISIBLE
@@ -43,21 +53,23 @@ class HomeFragment : Fragment() {
                 binding.pbHome.visibility = View.GONE
             }
         }
+
         homeViewModel.message.observe(viewLifecycleOwner) { message ->
             binding.tvMessage.text = message
         }
     }
 
     private fun showRecyclerView() {
-        adapter = HomeAdapter()
+        val linearLayoutManager = LinearLayoutManager(activity)
 
-        val recyclerView = binding.rvHome
-        recyclerView.adapter = adapter
+        if (userPrefs.getUser().departemen == "User") {
+            linearLayoutManager.reverseLayout = true
+            linearLayoutManager.stackFromEnd = true
+        }
 
-        val layoutManager = LinearLayoutManager(activity)
-        layoutManager.reverseLayout = true
-        layoutManager.stackFromEnd = true
-        recyclerView.layoutManager = layoutManager
+        binding.rvHome.layoutManager = linearLayoutManager
+        binding.rvHome.setHasFixedSize(true)
+        binding.rvHome.adapter = adapter
     }
 
 }

@@ -4,9 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bangkit.japorapp.databinding.ActivityOnboardingOneBinding
+import com.bangkit.japorapp.ui.HomeActivity
 import com.bangkit.japorapp.ui.MainActivity
-import com.bangkit.japorapp.ui.sign_in.SignInFragment
 import com.bangkit.japorapp.utils.Preferences
+import com.google.firebase.auth.FirebaseAuth
 
 class OnboardingOneActivity : AppCompatActivity() {
 
@@ -23,9 +24,17 @@ class OnboardingOneActivity : AppCompatActivity() {
         if (preferences.getValues("onboarding").equals("1")) {
             finishAffinity()
 
-            val intent = Intent(this@OnboardingOneActivity,
-                MainActivity::class.java)
-            startActivity(intent)
+            val uid = FirebaseAuth.getInstance().uid
+
+            if (uid != null) {
+                val intent = Intent(this@OnboardingOneActivity,
+                    HomeActivity::class.java)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this@OnboardingOneActivity,
+                    MainActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         binding.next1.setOnClickListener {

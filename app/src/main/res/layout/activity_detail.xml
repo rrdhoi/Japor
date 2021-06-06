@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.DetailActivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_photo"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_report"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_image_not_supported_24"
+                tools:ignore="ContentDescription" />
+
+        </androidx.cardview.widget.CardView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_pp_detail"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/card_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/profile" />
+
+        <TextView
+            android:id="@+id/tv_name_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/civ_pp_detail"
+            app:layout_constraintTop_toTopOf="@id/civ_pp_detail"
+            tools:text="Name"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_date_time_loc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_name_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_detail"
+            app:layout_constraintBottom_toBottomOf="@id/civ_pp_detail"
+            tools:text="Date, Time, and Location"
+            android:textSize="12sp"
+            android:fontFamily="@font/poppins_light" />
+
+        <TextView
+            android:id="@+id/tv_title_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/grey_500"
+            tools:text="Judul"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/civ_pp_detail" />
+
+        <TextView
+            android:id="@+id/tv_desc_detail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_detail"
+            app:layout_constraintStart_toStartOf="@id/tv_title_detail"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_detail"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="14sp"
+            tools:text="Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"/>
+
+        <TextView
+            android:id="@+id/kategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/category"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/grey_500"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_detail" />
+
+        <FrameLayout
+            android:id="@+id/frame_recom_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/kategori"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/type_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="8dp"
+                tools:backgroundTint="@color/white"
+                android:layout_margin="4dp"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/img_fire"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/img_fire_blue"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/star_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_recommended"
+                android:translationZ="90dp"
+                android:visibility="invisible"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_recom_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/kategori"
+            app:layout_constraintLeft_toRightOf="@id/frame_recom_1">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/type_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="4dp"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/img_tree"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/img_tree_blue"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/star_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_recommended"
+                android:translationZ="90dp"
+                android:visibility="invisible"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_recom_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/kategori"
+            app:layout_constraintLeft_toRightOf="@id/frame_recom_2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/type_3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="8dp"
+                android:elevation="3dp"
+                android:layout_margin="4dp">
+
+                <ImageView
+                    android:id="@+id/img_road"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/img_road_blue"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/star_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_recommended"
+                android:translationZ="90dp"
+                android:visibility="invisible"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/kategori_detail_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/wildfire"
+            android:textColor="@color/grey_200"
+            android:textSize="10sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/frame_recom_1"
+            app:layout_constraintStart_toStartOf="@+id/frame_recom_1"
+            app:layout_constraintTop_toBottomOf="@id/frame_recom_1"
+            android:layout_marginBottom="20dp"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/kategori_detail_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/blocking_ntrees"
+            android:textAlignment="center"
+            android:textColor="@color/grey_200"
+            android:textSize="10sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/frame_recom_2"
+            app:layout_constraintStart_toStartOf="@+id/frame_recom_2"
+            app:layout_constraintTop_toBottomOf="@id/frame_recom_2"
+            android:layout_marginBottom="20dp"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/kategori_detail_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/damaged_nroads"
+            android:gravity="center"
+            android:textColor="@color/grey_200"
+            android:textSize="10sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/frame_recom_3"
+            app:layout_constraintStart_toStartOf="@+id/frame_recom_3"
+            app:layout_constraintTop_toBottomOf="@id/frame_recom_3"
+            android:layout_marginBottom="20dp"
+            tools:ignore="SmallSp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            app:layout_constraintTop_toBottomOf="@id/kategori"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tv_for_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/untuk_petugas"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/grey_500"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_department"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_for_department">
+
+                <ImageButton
+                    android:id="@+id/ib_department"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/ic_baseline_camera_24"
+                    android:backgroundTint="@color/grey_500"
+                    android:layout_gravity="center"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:id="@+id/iv_captured_department"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_valid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valid"
+                android:backgroundTint="#00FF00"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:fontFamily="@font/poppins"
+                app:layout_constraintTop_toBottomOf="@id/card_department"
+                app:layout_constraintStart_toStartOf="@id/card_department"
+                app:layout_constraintEnd_toStartOf="@id/btn_invalid"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <Button
+                android:id="@+id/btn_invalid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tidak_valid"
+                android:backgroundTint="#FF0000"
+                android:textAllCaps="false"
+                android:fontFamily="@font/poppins"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintTop_toBottomOf="@id/card_department"
+                app:layout_constraintEnd_toEndOf="@id/card_department"
+                app:layout_constraintStart_toEndOf="@id/btn_valid"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/pb_detail_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

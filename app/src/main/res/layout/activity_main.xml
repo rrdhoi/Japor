@@ -22,6 +22,6 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_auth"
 
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="404dp" />
+        tools:ignore="FragmentTagUsage" />
+
 </LinearLayout>

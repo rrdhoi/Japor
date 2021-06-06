@@ -16,7 +16,7 @@ class OnboardingThreeActivity : AppCompatActivity() {
 
         binding.next3.setOnClickListener {
             val intent = Intent(this@OnboardingThreeActivity,
-                OnboardingThreeActivity::class.java)
+                OnboardingFourActivity::class.java)
             startActivity(intent)
         }
     }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bangkit.japorapp.databinding.FragmentSignupBinding
 import com.bangkit.japorapp.ui.HomeActivity
+import com.bangkit.japorapp.utils.UserPreference
 import java.lang.StringBuilder
 
 class SignUpFragment : Fragment() {
@@ -51,6 +52,11 @@ class SignUpFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
 
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
+        }
+
+        signUpViewModel.user.observe(viewLifecycleOwner) { user ->
+            val userPrefs = UserPreference(requireContext())
+            userPrefs.setUser(user)
         }
     }
 

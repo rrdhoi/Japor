@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JaPor</string>
+    <string name="app_name">Japor</string>
     <string name="dummy_email">johndoe@gmail.com</string>
     <string name="dummy_password">******</string>
     <string name="dummy_fullname">John Doe</string>
@@ -16,8 +16,6 @@
     <string name="sign_out">Keluar</string>
     <string name="empty">Data kosong!</string>
     <string name="lanjutkan">Lanjutkan</string>
-    <string name="deteksi_objek">Deteksi Objek</string>
-    <string name="now_playing_desc">Lebih mudah untuk mengetahui <br /> film yang sedang tampil</string>
     <string name="lewati_perkenalan">Lewati Perkenalan</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
@@ -28,14 +26,11 @@
     <string name="tulis_deskripsi_laporan">Tulis deskripsi laporan</string>
     <string name="category">Kategori</string>
     <string name="kirim">Kirim</string>
-    <string name="damaged_nroads">Damaged<br />Roads</string>
-    <string name="blocking_ntrees">Blocking<br />Trees</string>
+    <string name="damaged_nroads">Damaged\nRoads</string>
+    <string name="blocking_ntrees">Blocking\nTrees</string>
     <string name="wildfire">Wildfire</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profil_kamu">Profil Kamu</string>
     <string name="catatan_laporan">Catatan Laporan</string>
-    <string name="edit_profil">Edit Profil</string>
     <string name="pengaturan">Pengaturan</string>
     <string name="keluar">Keluar</string>
     <string name="bantuan">Bantuan</string>
@@ -50,4 +45,22 @@
     <string name="ulang_sandi">Ulang Sandi</string>
     <string name="tulis_ulang_password_kamu">Tulis ulang password kamu</string>
     <string name="silahkan_cek_email_kamu">Silahkan cek email kamu!!</string>
+    <string name="laporan_anda">Laporan Kamu</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="lokasi_anda">Lokasi Anda</string>
+    <string name="onboarding_one_desc">Melaporkan masalah dengan cara yang mudah, cepat, dan aman</string>
+    <string name="onboarding_two_title">Mudah</string>
+    <string name="onboarding_two_desc">Tangkap semua masalah hanya dengan kamera ponsel kamu</string>
+    <string name="onboarding_three_title">Cepat</string>
+    <string name="onboarding_three_desc">Deskripsikan masalah sesuai kategori yang telah direkomendasikan</string>
+    <string name="onboarding_four_title">Aman</string>
+    <string name="onboarding_four_desc">Serahkan semua masalah kamu kepada pihak terkait</string>
+    <string name="foto_ulang">Foto Ulang</string>
+    <string name="batalkan_laporan">Batalkan Laporan</string>
+    <string name="untuk_petugas">Untuk Petugas</string>
+    <string name="valid">Valid</string>
+    <string name="tidak_valid">Tidak Valid</string>
+    <string name="hapus_akun">Hapus Akun</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

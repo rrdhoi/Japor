@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
-       android:textAlignment="center"
+        android:textAlignment="center"
         android:fontFamily="@font/poppins_light"
         android:text="@string/lewati_perkenalan"
         android:textColor="@color/grey_200"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         style="@style/TextView.PoppinsMedium22black700"
-        android:text="@string/deteksi_objek"
+        android:text="@string/app_name"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,9 +63,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="@string/now_playing_desc"
+        android:text="@string/onboarding_one_desc"
         style="@style/TextView.PoppinsLight16grey500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
