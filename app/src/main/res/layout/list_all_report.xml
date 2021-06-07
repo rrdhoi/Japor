@@ -65,16 +65,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="8sp"
                 android:fontFamily="@font/poppins"
-                android:textColor="@color/green_500"
+                android:textColor="@color/yellow_500"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/shape_rectangle_green"
+                android:background="@drawable/shape_rectangle_yellow"
                 android:textSize="12sp"
-                tools:text="Valid" />
+                tools:text="Menunggu" />
 
             <TextView
                 android:id="@+id/tv_date_time"
