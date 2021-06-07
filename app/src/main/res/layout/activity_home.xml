@@ -37,7 +37,7 @@
         android:background="@color/blue_500"
         android:backgroundTint="@color/blue_500"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_baseline_camera_24"
+        android:src="@drawable/ic_photo_camera"
         app:layout_anchor="@+id/navView"
         app:tint="@color/white" />
 
