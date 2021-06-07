@@ -63,6 +63,25 @@
         tools:text="123456787654321" />
 
     <TextView
+        android:id="@+id/tv_departement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_nik"
+        app:layout_constraintStart_toStartOf="@id/tv_nik"
+        app:layout_constraintEnd_toEndOf="@id/tv_nik"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:layout_marginTop="5dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/blue_500"
+        android:background="@drawable/shape_rectangle_blue_light"
+        tools:text="Roads" />
+
+    <TextView
         android:id="@+id/tv_my_list_report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,7 +93,7 @@
         android:textColor="@color/black_700"
         android:textSize="16sp"
         app:drawableLeftCompat="@drawable/ic_list_report"
-        app:layout_constraintTop_toBottomOf="@id/tv_nik" />
+        app:layout_constraintTop_toBottomOf="@id/tv_departement" />
 
     <TextView
         android:id="@+id/tv_help"

@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
         userPrefs = UserPreference(requireContext())
         val department = userPrefs.getUser().departemen
-        binding.tvDepartmen.text = department
+//        binding.tvDepartmen.text = department
 
         adapter = HomeAdapter()
         observingValue()

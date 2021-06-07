@@ -47,7 +47,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
                 }
                 "Menunggu" -> {
                     val drawableYellow = ContextCompat.getDrawable(itemView.context, R.drawable.shape_rectangle_yellow)
-                    val colorYellow = ContextCompat.getColor(itemView.context, R.color.green_500)
+                    val colorYellow = ContextCompat.getColor(itemView.context, R.color.yellow_500)
                     binding.tvStatus.setTextColor(colorYellow)
                     binding.tvStatus.background = drawableYellow
                 }
