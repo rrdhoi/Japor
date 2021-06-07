@@ -48,8 +48,11 @@ class ReportViewModel : ViewModel() {
                     call: Call<ReportResponse>,
                     response: Response<ReportResponse>
                 ) {
-                    _reportId.value = response.body()?.id
-                    _message.value = response.message()
+                    if (response.isSuccessful) {
+                        _reportId.value = response.body()?.id
+                    } else {
+                        _message.value = response.message()
+                    }
                 }
 
                 override fun onFailure(call: Call<ReportResponse>, t: Throwable) {
@@ -95,7 +98,12 @@ class ReportViewModel : ViewModel() {
                 call: Call<ReportResponse>,
                 response: Response<ReportResponse>
             ) {
-                _isFinished.value = true
+                if (response.isSuccessful) {
+                    _isFinished.value = true
+                } else {
+                    _isFinished.value = false
+                    _message.value = response.message()
+                }
             }
 
             override fun onFailure(call: Call<ReportResponse>, t: Throwable) {

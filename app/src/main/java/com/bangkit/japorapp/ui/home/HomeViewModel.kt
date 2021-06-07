@@ -14,6 +14,9 @@ class HomeViewModel : ViewModel() {
     private val _report = MutableLiveData<List<ReportResponse>>()
     val report: LiveData<List<ReportResponse>> get() = _report
 
+    private val _newestReport = MutableLiveData<ReportResponse>()
+    val newestReport: LiveData<ReportResponse> get() = _newestReport
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
@@ -22,7 +25,6 @@ class HomeViewModel : ViewModel() {
 
     fun getReport(department: String) {
         _isLoading.value = true
-        val reportArray = ArrayList<ReportResponse>()
         val client = ApiConfig.getApiService().getAllReports()
 
         client.enqueue(object : Callback<List<ReportResponse>> {
@@ -33,38 +35,24 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = false
 
                 if (response.isSuccessful) {
-
                     val reportType = response.body()
+
                     if (reportType != null) {
                         val size = reportType.size - 1
 
                         when (department) {
                             "User" -> {
                                 _report.value = response.body()
+                                _newestReport.value = reportType[size]
                             }
                             "Road" -> {
-                                for (i in 0..size) {
-                                    if (reportType[i].kategori == "Jalan" && reportType[i].status == "Menunggu") {
-                                        reportArray.add(reportType[i])
-                                    }
-                                }
-                                _report.value = reportArray
+                                lookForReport(size, reportType, "Jalan")
                             }
                             "Fire" -> {
-                                for (i in 0..size) {
-                                    if (reportType[i].kategori == "Api" && reportType[i].status == "Menunggu") {
-                                        reportArray.add(reportType[i])
-                                    }
-                                }
-                                _report.value = reportArray
+                                lookForReport(size, reportType, "Api")
                             }
                             "Tree" -> {
-                                for (i in 0..size) {
-                                    if (reportType[i].kategori == "Pohon" && reportType[i].status == "Menunggu") {
-                                        reportArray.add(reportType[i])
-                                    }
-                                }
-                                _report.value = reportArray
+                                lookForReport(size, reportType, "Pohon")
                             }
                         }
                     }
@@ -76,6 +64,20 @@ class HomeViewModel : ViewModel() {
                 _message.value = t.localizedMessage
             }
         })
+    }
+
+    private fun lookForReport(size: Int, reportType: List<ReportResponse>, category: String) {
+        val reportArray = ArrayList<ReportResponse>()
+        for (i in 0..size) {
+            if (reportType[i].kategori == category && reportType[i].status == "Menunggu") {
+                reportArray.add(reportType[i])
+            }
+        }
+        _report.value = reportArray
+        val arraySize = reportArray.size - 1
+        if (arraySize >= 0) {
+            _newestReport.value = reportArray[arraySize]
+        }
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.japorapp.data.response.ReportResponse
 import com.bangkit.japorapp.databinding.FragmentHomeBinding
 import com.bangkit.japorapp.utils.UserPreference
+import com.bumptech.glide.Glide
 
 class HomeFragment : Fragment() {
 
@@ -33,7 +34,10 @@ class HomeFragment : Fragment() {
 
         userPrefs = UserPreference(requireContext())
         val department = userPrefs.getUser().departemen
-//        binding.tvDepartmen.text = department
+
+        if (department != "User") {
+            binding.lyTypeReport.visibility = View.GONE
+        }
 
         adapter = HomeAdapter()
         observingValue()
@@ -44,6 +48,21 @@ class HomeFragment : Fragment() {
     private fun observingValue() {
         homeViewModel.report.observe(viewLifecycleOwner) { result ->
             adapter.reportList = result as ArrayList<ReportResponse>
+        }
+
+        homeViewModel.newestReport.observe(viewLifecycleOwner) { newestReport ->
+            activity?.let {
+                Glide.with(it)
+                    .load(newestReport.url)
+                    .into(binding.ivEvent)
+            }
+            binding.tvTitle.text = newestReport.judul
+            binding.tvStatus.text = newestReport.status
+
+            val dateAndTime = newestReport.tanggal
+                .replace("T", " ")
+                .replace("Z", "")
+            binding.tvDateTime.text = dateAndTime
         }
 
         homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->

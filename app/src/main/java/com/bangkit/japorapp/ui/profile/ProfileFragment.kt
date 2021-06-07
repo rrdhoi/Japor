@@ -1,5 +1,6 @@
 package com.bangkit.japorapp.ui.profile
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
@@ -58,6 +59,7 @@ class ProfileFragment : Fragment(), BaseView {
         }
         binding.tvName.text = userPreference.getUser().nama
         binding.tvNik.text = userPreference.getUser().nik
+        binding.tvDepartement.text = userPreference.getUser().departemen
 
         binding.btnCivProfile.setOnClickListener {
             openGalery()
@@ -190,6 +192,7 @@ class ProfileFragment : Fragment(), BaseView {
         _binding = null
     }
 
+    @SuppressLint("InflateParams")
     private fun initView() {
         progressDialog = Dialog(requireContext())
         val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)
