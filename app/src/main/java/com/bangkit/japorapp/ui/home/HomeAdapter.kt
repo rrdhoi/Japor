@@ -2,7 +2,7 @@ package com.bangkit.japorapp.ui.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -62,6 +62,8 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
             Glide.with(itemView.context)
                     .load(report.url)
                     .into(binding.ivEvent)
+
+            Log.d("HomeAdapter", "bind: ${report.url}")
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailActivity::class.java)
