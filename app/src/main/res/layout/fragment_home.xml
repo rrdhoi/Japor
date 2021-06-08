@@ -122,6 +122,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_light"
+                        android:textColor="@color/grey_300"
                         android:textSize="12sp"
                         android:layout_marginEnd="20dp"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_status"
@@ -154,26 +155,26 @@
                     android:fontFamily="@font/poppins"
                     android:textSize="14sp"
                     android:gravity="center"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/blue_700"/>
 
                 <TextView
                     android:id="@+id/tv_road"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/jalanan"
+                    android:text="@string/kebakaran"
                     android:fontFamily="@font/poppins"
                     android:textSize="14sp"
                     android:gravity="center"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="32dp"
                     android:textColor="@color/grey_300"/>
 
                 <TextView
                     android:id="@+id/tv_fire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/kebakaran"
+                    android:text="@string/jalanan"
                     android:fontFamily="@font/poppins"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="32dp"
                     android:textSize="14sp"
                     android:gravity="center"
                     android:textColor="@color/grey_300"/>
@@ -184,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/pohon_tumbang"
                     android:fontFamily="@font/poppins"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="32dp"
                     android:textSize="14sp"
                     android:gravity="center"
                     android:textColor="@color/grey_300"/>

@@ -1,13 +1,13 @@
 package com.bangkit.japorapp.ui.home
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.bangkit.japorapp.R
 import com.bangkit.japorapp.data.response.ReportResponse
@@ -57,35 +57,38 @@ class HomeFragment : Fragment() {
 
         setDefaultFragment()
 
+        val colorBlue = ContextCompat.getColor(requireContext(), R.color.blue_700)
+        val colorGrey = ContextCompat.getColor(requireContext(), R.color.grey_300)
+
         binding.tvAll.setOnClickListener {
-            binding.tvAll.setTextColor(Color.BLACK)
-            binding.tvRoad.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvFire.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvTree.setTextColor(Color.argb(100, 141, 146, 163))
+            binding.tvAll.setTextColor(colorBlue)
+            binding.tvRoad.setTextColor(colorGrey)
+            binding.tvFire.setTextColor(colorGrey)
+            binding.tvTree.setTextColor(colorGrey)
 
             setDefaultFragment()
         }
         binding.tvRoad.setOnClickListener {
-            binding.tvRoad.setTextColor(Color.BLACK)
-            binding.tvAll.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvFire.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvTree.setTextColor(Color.argb(100, 141, 146, 163))
+            binding.tvRoad.setTextColor(colorBlue)
+            binding.tvAll.setTextColor(colorGrey)
+            binding.tvFire.setTextColor(colorGrey)
+            binding.tvTree.setTextColor(colorGrey)
 
             setRoadFragment()
         }
         binding.tvFire.setOnClickListener {
-            binding.tvFire.setTextColor(Color.BLACK)
-            binding.tvRoad.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvAll.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvTree.setTextColor(Color.argb(100, 141, 146, 163))
+            binding.tvFire.setTextColor(colorBlue)
+            binding.tvRoad.setTextColor(colorGrey)
+            binding.tvAll.setTextColor(colorGrey)
+            binding.tvTree.setTextColor(colorGrey)
 
             setFireFragment()
         }
         binding.tvTree.setOnClickListener {
-            binding.tvTree.setTextColor(Color.BLACK)
-            binding.tvRoad.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvFire.setTextColor(Color.argb(100, 141, 146, 163))
-            binding.tvAll.setTextColor(Color.argb(100, 141, 146, 163))
+            binding.tvTree.setTextColor(colorBlue)
+            binding.tvRoad.setTextColor(colorGrey)
+            binding.tvFire.setTextColor(colorGrey)
+            binding.tvAll.setTextColor(colorGrey)
 
             setTreeFragment()
         }

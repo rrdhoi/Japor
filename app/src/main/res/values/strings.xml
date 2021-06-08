@@ -62,8 +62,8 @@
     <string name="tidak_valid">Tidak Valid</string>
     <string name="hapus_akun">Hapus Akun</string>
     <string name="all">Semua</string>
-    <string name="jalanan">Jalan\nRusak</string>
+    <string name="jalanan">Jalan<br/>Rusak</string>
     <string name="kebakaran">Kebakaran</string>
-    <string name="pohon_tumbang">Pohon\nTumbang</string>
+    <string name="pohon_tumbang">Pohon<br/>Tumbang</string>
     <string name="kabar_terbaru">Kabar Terbaru</string>
 </resources>
