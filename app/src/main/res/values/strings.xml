@@ -61,11 +61,9 @@
     <string name="valid">Valid</string>
     <string name="tidak_valid">Tidak Valid</string>
     <string name="hapus_akun">Hapus Akun</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="all">All</string>
-    <string name="jalanan">Jalanan</string>
+    <string name="all">Semua</string>
+    <string name="jalanan">Jalan\nRusak</string>
     <string name="kebakaran">Kebakaran</string>
-    <string name="pohon_tumbang">Pohon Tumbang</string>
+    <string name="pohon_tumbang">Pohon\nTumbang</string>
     <string name="kabar_terbaru">Kabar Terbaru</string>
 </resources>

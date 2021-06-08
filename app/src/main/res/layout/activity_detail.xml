@@ -304,7 +304,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/ic_baseline_camera_24"
+                    android:background="@drawable/ic_photo_camera"
                     android:backgroundTint="@color/grey_500"
                     android:layout_gravity="center"
                     tools:ignore="ContentDescription" />

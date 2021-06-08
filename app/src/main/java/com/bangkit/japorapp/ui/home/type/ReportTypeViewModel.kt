@@ -1,5 +1,6 @@
-package com.bangkit.japorapp.ui.home
+package com.bangkit.japorapp.ui.home.type
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,15 +10,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel : ViewModel() {
+class ReportTypeViewModel : ViewModel() {
 
-    private val _newestReport = MutableLiveData<ReportResponse>()
-    val newestReport: LiveData<ReportResponse> get() = _newestReport
+    private val _report = MutableLiveData<List<ReportResponse>>()
+    val report: LiveData<List<ReportResponse>> get() = _report
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    fun getNewestReport(department: String) {
+    private val _message = MutableLiveData<String>()
+    val message: LiveData<String> get() = _message
+
+    fun getReport(department: String, type: String) {
+        Log.d("AllTypeFragment", "$department, $type")
         _isLoading.value = true
         val client = ApiConfig.getApiService().getAllReports()
 
@@ -36,7 +41,20 @@ class HomeViewModel : ViewModel() {
 
                         when (department) {
                             "User" -> {
-                                _newestReport.value = reportType[size]
+                                when (type) {
+                                    "All" -> {
+                                        _report.value = response.body()
+                                    }
+                                    "Road" -> {
+                                        lookForReport(size, reportType, "Jalan")
+                                    }
+                                    "Fire" -> {
+                                        lookForReport(size, reportType, "Api")
+                                    }
+                                    "Tree" -> {
+                                        lookForReport(size, reportType, "Pohon")
+                                    }
+                                }
                             }
                             "Road" -> {
                                 lookForReport(size, reportType, "Jalan")
@@ -54,6 +72,7 @@ class HomeViewModel : ViewModel() {
 
             override fun onFailure(call: Call<List<ReportResponse>>, t: Throwable) {
                 _isLoading.value = false
+                _message.value = t.localizedMessage
             }
         })
     }
@@ -65,10 +84,7 @@ class HomeViewModel : ViewModel() {
                 reportArray.add(reportType[i])
             }
         }
-        val arraySize = reportArray.size - 1
-        if (arraySize >= 0) {
-            _newestReport.value = reportArray[arraySize]
-        }
+        _report.value = reportArray
     }
 
 }
