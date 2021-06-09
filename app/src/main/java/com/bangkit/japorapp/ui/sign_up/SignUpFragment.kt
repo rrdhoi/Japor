@@ -1,5 +1,6 @@
 package com.bangkit.japorapp.ui.sign_up
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -123,6 +124,7 @@ class SignUpFragment : Fragment(), BaseView {
         _binding = null
     }
 
+    @SuppressLint("InflateParams")
     private fun initView() {
         progressDialog = Dialog(requireContext())
         val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)

@@ -1,12 +1,12 @@
 package com.bangkit.japorapp.ui.report
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -223,6 +223,7 @@ class ReportActivity : AppCompatActivity(), BaseView, CoroutineScope {
         Toast.makeText(this, "Klik tombol 'Batalkan Laporan' untuk keluar!", Toast.LENGTH_SHORT).show()
     }
 
+    @SuppressLint("InflateParams")
     private fun initView() {
         progressDialog = Dialog(this)
         val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)

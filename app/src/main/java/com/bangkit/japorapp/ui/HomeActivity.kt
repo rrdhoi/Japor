@@ -1,5 +1,6 @@
 package com.bangkit.japorapp.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
@@ -91,6 +92,7 @@ class HomeActivity : AppCompatActivity(),BaseView, CoroutineScope {
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun initView() {
         progressDialog = Dialog(this)
         val dialogLayout = layoutInflater.inflate(R.layout.dialog_loader, null)

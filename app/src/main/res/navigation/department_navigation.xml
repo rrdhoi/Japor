@@ -9,7 +9,7 @@
         android:id="@+id/department_navigation_home"
         android:name="com.bangkit.japorapp.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home_old" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/department_navigation_profile"
