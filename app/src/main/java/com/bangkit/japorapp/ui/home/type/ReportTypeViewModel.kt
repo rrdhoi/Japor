@@ -39,31 +39,33 @@ class ReportTypeViewModel : ViewModel() {
                     if (reportType != null) {
                         val size = reportType.size - 1
 
-                        when (department) {
-                            "User" -> {
-                                when (type) {
-                                    "All" -> {
-                                        _report.value = response.body()
-                                    }
-                                    "Road" -> {
-                                        lookForReport(size, reportType, "Jalan")
-                                    }
-                                    "Fire" -> {
-                                        lookForReport(size, reportType, "Api")
-                                    }
-                                    "Tree" -> {
-                                        lookForReport(size, reportType, "Pohon")
+                        if (size >= 0) {
+                            when (department) {
+                                "User" -> {
+                                    when (type) {
+                                        "All" -> {
+                                            _report.value = response.body()
+                                        }
+                                        "Road" -> {
+                                            lookForReport(size, reportType, "Jalan")
+                                        }
+                                        "Fire" -> {
+                                            lookForReport(size, reportType, "Api")
+                                        }
+                                        "Tree" -> {
+                                            lookForReport(size, reportType, "Pohon")
+                                        }
                                     }
                                 }
-                            }
-                            "Road" -> {
-                                lookForReport(size, reportType, "Jalan")
-                            }
-                            "Fire" -> {
-                                lookForReport(size, reportType, "Api")
-                            }
-                            "Tree" -> {
-                                lookForReport(size, reportType, "Pohon")
+                                "Road" -> {
+                                    lookForWaitingReport(size, reportType, "Jalan")
+                                }
+                                "Fire" -> {
+                                    lookForWaitingReport(size, reportType, "Api")
+                                }
+                                "Tree" -> {
+                                    lookForWaitingReport(size, reportType, "Pohon")
+                                }
                             }
                         }
                     }
@@ -78,6 +80,16 @@ class ReportTypeViewModel : ViewModel() {
     }
 
     private fun lookForReport(size: Int, reportType: List<ReportResponse>, category: String) {
+        val reportArray = ArrayList<ReportResponse>()
+        for (i in 0..size) {
+            if (reportType[i].kategori == category) {
+                reportArray.add(reportType[i])
+            }
+        }
+        _report.value = reportArray
+    }
+
+    private fun lookForWaitingReport(size: Int, reportType: List<ReportResponse>, category: String) {
         val reportArray = ArrayList<ReportResponse>()
         for (i in 0..size) {
             if (reportType[i].kategori == category && reportType[i].status == "Menunggu") {

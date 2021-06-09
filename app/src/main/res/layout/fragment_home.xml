@@ -139,8 +139,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@id/card_newest_report"
@@ -155,10 +153,11 @@
                     android:fontFamily="@font/poppins"
                     android:textSize="14sp"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:textColor="@color/blue_700"/>
 
                 <TextView
-                    android:id="@+id/tv_road"
+                    android:id="@+id/tv_fire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/kebakaran"
@@ -166,10 +165,11 @@
                     android:textSize="14sp"
                     android:gravity="center"
                     android:layout_marginStart="32dp"
+                    android:maxLines="1"
                     android:textColor="@color/grey_300"/>
 
                 <TextView
-                    android:id="@+id/tv_fire"
+                    android:id="@+id/tv_road"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/jalanan"
@@ -177,6 +177,7 @@
                     android:layout_marginStart="32dp"
                     android:textSize="14sp"
                     android:gravity="center"
+                    android:maxLines="2"
                     android:textColor="@color/grey_300"/>
 
                 <TextView
@@ -187,6 +188,7 @@
                     android:fontFamily="@font/poppins"
                     android:layout_marginStart="32dp"
                     android:textSize="14sp"
+                    android:maxLines="2"
                     android:gravity="center"
                     android:textColor="@color/grey_300"/>
 

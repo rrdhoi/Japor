@@ -34,18 +34,20 @@ class HomeViewModel : ViewModel() {
                     if (reportType != null) {
                         val size = reportType.size - 1
 
-                        when (department) {
-                            "User" -> {
-                                _newestReport.value = reportType[size]
-                            }
-                            "Road" -> {
-                                lookForReport(size, reportType, "Jalan")
-                            }
-                            "Fire" -> {
-                                lookForReport(size, reportType, "Api")
-                            }
-                            "Tree" -> {
-                                lookForReport(size, reportType, "Pohon")
+                        if (size >= 0) {
+                            when (department) {
+                                "User" -> {
+                                    _newestReport.value = reportType[size]
+                                }
+                                "Road" -> {
+                                    lookForReport(size, reportType, "Jalan")
+                                }
+                                "Fire" -> {
+                                    lookForReport(size, reportType, "Api")
+                                }
+                                "Tree" -> {
+                                    lookForReport(size, reportType, "Pohon")
+                                }
                             }
                         }
                     }
